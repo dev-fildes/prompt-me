@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
-import _ from 'lodash'
 
 const NewPost = (props) => {
   const [error, setError] = useState("")
+  const [shouldRedirect, setShouldRedirect] = useState(false)
   const [post, setPost] = useState({})
   const emptyReview = {
     title: "",
@@ -42,14 +42,18 @@ const NewPost = (props) => {
       }
     })
     .then(parsedBody => {
-      if (parsedBody.body == null) {
+      if (parsedBody.body === null) {
         setError(parsedBody.error)
         emptyReviewForm()
       } else {
         setPost(parsedBody)
+        setShouldRedirect(true)
       }
     })
     .catch(error => console.log(`Error posting ${error.message}`))
+  }
+  if(shouldRedirect) {
+    return <Redirect to="/" />
   }
 
 
@@ -62,7 +66,7 @@ const NewPost = (props) => {
           type="text"
           onChange={handleInput}
           value={post.title || ''}
-          placeholder="Title(optional)"
+          placeholder="Title (optional)"
           />
 
         <br/>
