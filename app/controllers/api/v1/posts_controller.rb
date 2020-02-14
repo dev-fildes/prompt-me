@@ -15,10 +15,11 @@ class Api::V1::PostsController < ApplicationController
   def create
     post = Post.new(post_params)
     post.user = current_user
+    posts = Post.all
     if post.save
-      render json: post
+      render json: posts
     else
-      render json: {error: post.errors.full_messages.to_sentence}
+      render json: { error: post.errors.full_messages.to_sentence }
     end
   end
 
