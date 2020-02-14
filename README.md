@@ -1,4 +1,4 @@
-[![Codeship Status for dev-fildes/prompt-me](https://app.codeship.com/projects/fe343640-2e64-0138-39e6-3e5b37e0d631/status?branch=master)](https://app.codeship.com/projects/384848)
+[![Codeship Status for dev-fildes/prompt-me](https://app.codeship.com/projects/024fcf60-319b-0138-a622-5a445d5df4a4/status?branch=master)](https://app.codeship.com/projects/385473)
 
 # README
 
