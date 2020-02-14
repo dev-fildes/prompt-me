@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Prompt Me</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" >
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+  <nav class="navbar justify-content-between">
+    <a class="navbar-brand" href="/">Prompt Me</a>
+    <form class="form-inline">
+
+      <%- if current_user -%>
+      <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, :class => "btn btn-outline-secondary" %>
+
+      <a href="post/new">new post</a>
+      <%- else -%>
+      <%= link_to 'Sign Up', new_user_registration_path, :class => "btn btn-outline-secondary" %>
+      <%= link_to 'Sign In', new_user_session_path, :class => "btn btn-outline-secondary" %>
+      <%- end -%>
+    </form>
+  </nav>
+
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-2">
+        <div class="sidenav">
+          <div class="sidenav-content">
+
+            <%- if current_user -%>
+            <%= current_user.profile_photo.url %>
+            <%- end -%>
+
+            <div href="#" class="sidebar">About</div>
+            <div href="#" class="sidebar">Services</div>
+            <div href="#" class="sidebar">Clients</div>
+            <div href="#" class="sidebar">Contact</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-10 basicset">
+        <%- flash.each do |key, value| -%>
+        <div class="flash flash-<%= key %>">
+          <%= value %>
+        </div>
+        <%- end -%>
+        <%= yield %>
+
+
+        <%= javascript_include_tag 'application' %>
+
+        <%- if Rails.env.development? || Rails.env.test? -%>
+        <%= javascript_tag do %>
+        window.railsEnv = '<%= Rails.env %>'
+        <%- end -%>
+        <%- end -%>
+        <%= javascript_pack_tag 'application' %>
+        <%= yield :extra_footer %>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
