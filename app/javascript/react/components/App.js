@@ -1,7 +1,19 @@
 import React from 'react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+
+import PromptIndexContainer from './Index/PromptIndexContainer'
+import NewPost from './Form/NewPost'
+
 
 export const App = (props) => {
-  return (<h1>Make It So React</h1>)
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={PromptIndexContainer}/>
+        <Route exact path="/post/new" component={NewPost}/>
+      </Switch>
+    </BrowserRouter>
+  )
 }
 
 export default App
