@@ -17,9 +17,9 @@ class Api::V1::PostsController < ApplicationController
     post.user = current_user
     posts = Post.all
     if post.save
-      render json: posts
+      render json: post
     else
-      render json: { error: post.errors.full_messages.to_sentence }
+      render json: post.errors.full_messages
     end
   end
 

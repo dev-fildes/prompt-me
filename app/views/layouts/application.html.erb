@@ -33,7 +33,7 @@
           <div class="sidenav-content">
 
             <%- if current_user -%>
-            <%= current_user.profile_photo.url %>
+            <img src=<%= current_user.profile_photo.url %>/ class="navBarUserIcon">
             <%- end -%>
 
             <div href="#" class="sidebar">About</div>
