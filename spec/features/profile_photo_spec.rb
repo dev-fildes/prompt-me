@@ -6,6 +6,7 @@ feature "profile photo" do
     click_link "Sign Up"
 
     fill_in "Email", with: "ash@s-mart.com"
+    fill_in "Username", with: 'Vroom'
     fill_in "Password", with: "boomstick!3vilisd3ad"
     fill_in "Password confirmation", with: "boomstick!3vilisd3ad"
     attach_file :user_profile_photo, "#{Rails.root}/spec/support/images/photo.png"
