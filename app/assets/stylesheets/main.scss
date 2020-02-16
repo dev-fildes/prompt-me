@@ -8,6 +8,9 @@ body {
   height:100vh;
 }
 
+.row {
+  margin-right:0px;
+}
 .btn {
   margin:0 10px 0 0;
 }
@@ -26,15 +29,14 @@ body {
 }
 
 .sidenav {
-  min-height: 94.5vh;
-  width: 300px;
-  margin-left: -15px;
+  min-height: 100%;
+  width: 400px;
   text-align:center;
   background-color: #FFF;
 }
 
 .sidenav-content {
-
+  padding-top:180px;
 }
 
 .sidebar:hover {
@@ -51,7 +53,65 @@ body {
 }
 
 .navBarUserIcon {
-  height:100px;
-  width:100px;
-  border-radius:100px;
+  height:80px;
+  width:80px;
+  padding:5px;
+  border:1px solid #efefef;
+}
+.media-body {
+  text-align:right;
+
+  a {
+    font-family:Montserrat;
+    font-size:32px;
+    text-transform: lowercase;
+    color:#FBC99A;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+.usertext {
+  font-size:12px;
+  background-color:#D2Df7F;
+  width:200px;
+  margin-left:auto;
+  margin-right:0;
+
+  p {
+    padding-right:5px;
+  }
+}
+
+.media {
+  padding:0 40px 0 40px;
+}
+.userAboutText {
+  padding:20px;
+  font-size: 12px;
+  display: table;
+
+  p {
+    width:355px;
+    padding:20px;
+    height: 130px;
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+.squarebrackets {
+  background-image: linear-gradient(#F2F2F2, #F2F2F2),
+  linear-gradient(#F2F2F2, #F2F2F2),
+  linear-gradient(#F2F2F2, #F2F2F2),
+  linear-gradient(#F2F2F2, #F2F2F2);
+
+  background-repeat: no-repeat;
+  background-size: 8px 2px;
+  // ^^^ This value should be equal to width of left OR right border.
+  background-position: top left, top right, bottom left, bottom right;
+
+  border: solid #F2F2F2;
+  border-width: 0 2px;
+  height:130px;
 }

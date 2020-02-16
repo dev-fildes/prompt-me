@@ -33,10 +33,26 @@
           <div class="sidenav-content">
 
             <%- if current_user -%>
-            <img src=<%= current_user.profile_photo.url %>/ class="navBarUserIcon">
-            <br />
-            Hey <a href=><%= current_user.email %></a>
+            <div class="media">
+              <img src=<%= current_user.profile_photo.url %>/ class="navBarUserIcon">
+              <div class="media-body">
+                <a href=/profile/<%= current_user.id %>><%= current_user.username %></a>
+                <div class="usertext">
+                  <p>
+                    <%= current_user.status %>
+                  </p>
+                </div>
+              </div>
+            </div>
             <%- end -%>
+            <div class="userAboutText">
+
+              <div class="squarebrackets">
+                <p>
+                  <%= current_user.about %>
+                </p>
+              </div>
+            </div>
 
             <div href="#" class="sidebar">About</div>
             <div href="#" class="sidebar">Services</div>
@@ -57,16 +73,16 @@
 
       </div>
 
-        <%= javascript_include_tag 'application' %>
+      <%= javascript_include_tag 'application' %>
 
-        <%- if Rails.env.development? || Rails.env.test? -%>
-        <%= javascript_tag do %>
-        window.railsEnv = '<%= Rails.env %>'
-        <%- end -%>
-        <%- end -%>
-        <%= javascript_pack_tag 'application' %>
-        <%= yield :extra_footer %>
-      </div>
+      <%- if Rails.env.development? || Rails.env.test? -%>
+      <%= javascript_tag do %>
+      window.railsEnv = '<%= Rails.env %>'
+      <%- end -%>
+      <%- end -%>
+      <%= javascript_pack_tag 'application' %>
+      <%= yield :extra_footer %>
     </div>
+  </div>
 </body>
 </html>
