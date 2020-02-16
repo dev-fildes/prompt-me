@@ -2,13 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 
 const NewPost = (props) => {
-  const [error, setError] = useState("")
+  const [error, setError] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
-  const [post, setPost] = useState({})
-  const emptyReview = {
+  const [post, setPost] = useState({
     title: "",
     body: ""
-  }
+  })
 
   const handleInput = (event) => {
     setPost({
@@ -18,36 +17,34 @@ const NewPost = (props) => {
   }
 
   const handleSubmit = (event) => {
-    event.preventDefault();
-    let emptyReviewForm = () => {
-      setPost(emptyReview)
-    }
-    addNewPost(post, emptyReviewForm)
+    event.preventDefault()
+    addNewPost(post)
   }
 
-  const addNewPost = (formPayload, emptyReviewForm) => {
-    fetch(`/api/v1/posts`, {
+  const addNewPost = (formPayload) => {
+    fetch('/api/v1/posts', {
       credentials: 'same-origin',
       method: "POST",
-      body: JSON.stringify(formPayload),
       headers: {
+        'Accept': 'application/json',
         'Content-Type': 'application/json'
-      }
+      },
+      body: JSON.stringify(formPayload),
     })
     .then(response => {
       if(response.ok) {
-        return response.json()
+        return response
       } else {
         throw new Error(`${response.status}: ${response.statusText}`)
       }
     })
+    .then(response => response.json())
     .then(parsedBody => {
-      if (parsedBody.body === null) {
-        setError(parsedBody.error)
-        emptyReviewForm()
-      } else {
+      if (!Array.isArray(parsedBody)) {
         setPost(parsedBody)
         setShouldRedirect(true)
+      } else {
+        setError(parsedBody)
       }
     })
     .catch(error => console.log(`Error posting ${error.message}`))
@@ -56,10 +53,9 @@ const NewPost = (props) => {
     return <Redirect to="/" />
   }
 
-
   return(
     <div className="newPostContainer">
-      {error}
+      {error[0]}
       <form onSubmit={handleSubmit}>
         <input
           name="title"

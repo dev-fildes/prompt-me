@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 
-import NewPost from '../Form/NewPost'
-import PostTile from './PostTile'
-
-const PromptIndexContainer = (props) => {
+import UserPosts from './UserPosts'
+const ProfilePage = (props) => {
   const [posts, setPosts] = useState([])
-  const [signedInUser, setSignedInUser] = useState(null)
+  const [user, setUser] = useState([])
 
+  const id = props.match.params.id
   useEffect(() => {
     fetch(`/api/v1/posts`)
     .then(response => {
@@ -18,30 +17,34 @@ const PromptIndexContainer = (props) => {
       }
     })
     .then(parsedBody => {
-      setPosts(parsedBody)
+      let userPosts = [];
+      parsedBody.forEach((post) => {
+        if (post.user_id == props.match.params.id) {
+          userPosts.push(post);
+        };
+      });
+      setPosts(userPosts);
     })
     .catch(error => {
       console.error(`Error in fetch ${error.message}`)
     })
   }, [])
 
-
-  const postList = posts.map(post => {
+  const userProfilePosts = posts.map(post => {
     return(
-      <PostTile
+      <UserPosts
         key={post.id}
         body={post.body}
         title={post.title}
-        creator={post.user_id}
-      />
+        />
     )
   })
 
   return(
     <div>
-      {postList}
+      {userProfilePosts}
     </div>
   )
 }
 
-export default PromptIndexContainer
+export default ProfilePage
