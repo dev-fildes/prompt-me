@@ -8,6 +8,6 @@ class RegistrationsController < Devise::RegistrationsController
 
   private
   def user_edit_params
-    params(:user).permit(:status)
+    params(:user).permit(:status, :about, :profile_photo)
   end
 end

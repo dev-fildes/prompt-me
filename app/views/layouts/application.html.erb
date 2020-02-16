@@ -5,13 +5,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" >
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/d414e5ddf1.js" crossorigin="anonymous"></script>
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= csrf_meta_tags %>
 </head>
 
 <body>
   <nav class="navbar justify-content-between">
-    <a class="navbar-brand" href="/">Prompt Me</a>
     <form class="form-inline">
 
       <%- if current_user -%>
@@ -23,10 +23,11 @@
       <%= link_to 'Sign In', new_user_session_path, :class => "btn btn-outline-secondary" %>
       <%- end -%>
     </form>
+    <a class="navbar-brand" href="/">Prompt Me</a>
   </nav>
 
 
-  <div class="st">
+  <div class="container">
     <div class="row">
       <div class="col-auto">
         <div class="sidenav">
@@ -44,7 +45,7 @@
                 </div>
               </div>
             </div>
-            <%- end -%>
+
             <div class="userAboutText">
 
               <div class="squarebrackets">
@@ -54,10 +55,40 @@
               </div>
             </div>
 
-            <div href="#" class="sidebar">About</div>
-            <div href="#" class="sidebar">Services</div>
-            <div href="#" class="sidebar">Clients</div>
-            <div href="#" class="sidebar">Contact</div>
+            <%- else %>
+
+            <div class="media">
+              <img src="https://i.imgur.com/U2ReTXA.png" class="navBarUserIcon">
+              <div class="media-body">
+                Guest
+                <div class="usertext">
+                  <p>
+                    welcome
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          <%- end -%>
+
+            <div class="icons">
+              <span>• •</span> NAVIGATE
+            </div>
+            <div class="sidenav-links1">
+              <i class="far fa-calendar-alt"></i>
+            </div>
+
+            <div class="linkscontainer">
+              <span class="navlinks"><a href="#">About</a></span>
+
+              <span class="navlinks"><a href="#">Services</a></span>
+
+              <br/>
+              <span class="navlinks"><a href="#">Clients</a></span>
+
+              <span class="navlinks"><a href="#">Contact</a></span>
+            </div>
+
           </div>
         </div>
 

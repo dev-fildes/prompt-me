@@ -8,9 +8,15 @@ body {
   height:100vh;
 }
 
+.container {
+  max-width:100%;
+  margin:0px;
+}
+
 .row {
   margin-right:0px;
 }
+
 .btn {
   margin:0 10px 0 0;
 }
@@ -29,14 +35,19 @@ body {
 }
 
 .sidenav {
-  min-height: 100%;
-  width: 400px;
-  text-align:center;
-  background-color: #FFF;
+  width:400px;
+  position:relative;
+  top:-5%;
+  height: 100%;
 }
 
 .sidenav-content {
-  padding-top:180px;
+  padding:180px 20px 0 20px;
+  height: 100%;
+  text-align:center;
+  background-color: #FFF;
+  position:fixed;
+  left:0;
 }
 
 .sidebar:hover {
@@ -47,7 +58,6 @@ body {
   display: block;
   background-color: pink;
 }
-
 .basicset {
   //for main text area
 }
@@ -59,13 +69,14 @@ body {
   border:1px solid #efefef;
 }
 .media-body {
-  text-align:right;
+  text-align: right;
 
   a {
     font-family:Montserrat;
     font-size:32px;
     text-transform: lowercase;
     color:#FBC99A;
+    margin:0 0 -10px 0;
   }
   a:hover {
     text-decoration: none;
@@ -75,7 +86,7 @@ body {
 .usertext {
   font-size:12px;
   background-color:#D2Df7F;
-  width:200px;
+  width:150px;
   margin-left:auto;
   margin-right:0;
 
@@ -88,7 +99,6 @@ body {
   padding:0 40px 0 40px;
 }
 .userAboutText {
-  padding:20px;
   font-size: 12px;
   display: table;
 
@@ -108,10 +118,77 @@ body {
 
   background-repeat: no-repeat;
   background-size: 8px 2px;
-  // ^^^ This value should be equal to width of left OR right border.
+
   background-position: top left, top right, bottom left, bottom right;
 
   border: solid #F2F2F2;
   border-width: 0 2px;
   height:130px;
+}
+
+.sidenav-links1 {
+  margin:0 auto;
+  width:360px;
+  background-color: #f2f2f2;
+  height:1px
+}
+.sidenav-signedout {
+  margin:0 auto;
+  width:30px;
+  background-color: #f2f2f2;
+  height:1px
+}
+
+.far {
+  float:right;
+  margin-top:-20px;
+  margin-right:5px;
+  color:#D2Df7F;
+}
+
+.icons {
+  text-align:left;
+  margin-left:25px;
+  color:#FBC99A;
+  margin-top:40px;
+
+  font-family:Montserrat;
+  font-weight:bolder;
+
+  span {
+    color:#D2Df7F;
+    font-family:Raleway;
+    font-weight:bolder;
+  }
+}
+
+.linkscontainer {
+  margin-top:20px;
+}
+
+.navlinks {
+  background-color:#D2Df7F;
+  width:150px;
+  display:inline-block;
+  margin:0 5px 5px 0;
+
+  a {
+    color:brown;
+    font-variant:small-caps;
+    text-transform: uppercase;
+    font-family:sans-serif;
+    font-size:11px;
+    line-height: 2;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+}
+.navlinks:hover {
+  background-color:#FBC99A;
+  transition-duration: 0.2s;
+}
+a {
+  color:grey;
+  font-family: Roboto;
 }
