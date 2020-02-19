@@ -17,7 +17,6 @@
       <%- if current_user -%>
       <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, :class => "btn btn-outline-secondary" %>
 
-      <a href="/new">new post</a>
       <%- else -%>
       <%= link_to 'Sign Up', new_user_registration_path, :class => "btn btn-outline-secondary" %>
       <%= link_to 'Sign In', new_user_session_path, :class => "btn btn-outline-secondary" %>
@@ -69,7 +68,7 @@
               </div>
             </div>
 
-          <%- end -%>
+            <%- end -%>
 
             <div class="icons">
               <span>• •</span> NAVIGATE
@@ -79,7 +78,7 @@
             </div>
 
             <div class="linkscontainer">
-              <span class="navlinks"><a href="#">About</a></span>
+              <span class="navlinks"><a href="/profile/3">About</a></span>
 
               <span class="navlinks"><a href="#">Services</a></span>
 
@@ -102,8 +101,17 @@
         <%- end -%>
         <%= yield %>
 
+
+      </div>
+      <%- if current_user -%>
+
+      <div class="newPostButton">
+
+        <a href="/new"><i class="fas fa-plus"></i></a>
       </div>
 
+
+      <%- end %>
       <%= javascript_include_tag 'application' %>
 
       <%- if Rails.env.development? || Rails.env.test? -%>

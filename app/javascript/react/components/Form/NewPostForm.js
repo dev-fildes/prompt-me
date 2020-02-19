@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 
-const NewPost = (props) => {
-  const [error, setError] = useState([])
-  const [shouldRedirect, setShouldRedirect] = useState(false)
-  const [post, setPost] = useState({
+const NewPostForm = (props) => {
+  let defaultPost = {
     title: "",
     body: ""
-  })
+  }
+  if (props.editPost) defaultPost = props.post
+  const [error, setError] = useState([])
+  const [shouldRedirect, setShouldRedirect] = useState(false)
+  const [post, setPost] = useState(defaultPost)
 
   const handleInput = (event) => {
     setPost({
@@ -18,7 +20,11 @@ const NewPost = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    addNewPost(post)
+    if (props.editPost) {
+      props.editPost(post, props.closeEditForm)
+    } else {
+      addNewPost(post)
+    }
   }
 
   const addNewPost = (formPayload) => {
@@ -84,4 +90,4 @@ const NewPost = (props) => {
   )
 }
 
-export default NewPost
+export default NewPostForm

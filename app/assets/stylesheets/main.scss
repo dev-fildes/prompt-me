@@ -8,6 +8,35 @@ body {
   height:100vh;
 }
 
+.basicset {
+  margin-top:10px;
+}
+
+.newPostButton {
+  background-color:#D2Df7F;
+  height:80px;
+  width:80px;
+  text-align: center;
+  position:fixed;
+  bottom:0;
+  right:0;
+  margin:40px;
+  box-shadow: 0px 3px 0 0 #333;
+  border-radius: 100px;
+  display:table;
+
+  a {
+    font-size: 3em;
+    color:#FFF;
+    display: table-cell;
+    vertical-align: middle;
+  }
+  &:active {
+    box-shadow: none;
+    border: 2px inset #BDC872;
+  }
+}
+
 .container {
   max-width:100%;
   margin:0px;
@@ -88,7 +117,6 @@ body {
   background-color:#D2Df7F;
   width:150px;
   margin-left:auto;
-  margin-right:0;
 
   p {
     padding-right:5px;
@@ -96,7 +124,8 @@ body {
 }
 
 .media {
-  padding:0 40px 0 40px;
+  padding:0 10px 0 10px;
+  margin-bottom:30px;
 }
 .userAboutText {
   font-size: 12px;
@@ -129,12 +158,6 @@ body {
 .sidenav-links1 {
   margin:0 auto;
   width:360px;
-  background-color: #f2f2f2;
-  height:1px
-}
-.sidenav-signedout {
-  margin:0 auto;
-  width:30px;
   background-color: #f2f2f2;
   height:1px
 }
@@ -191,4 +214,19 @@ body {
 a {
   color:grey;
   font-family: Roboto;
+}
+.signedinButton {
+  border-top:1px solid #F2F2F2;
+  padding:5px;
+  text-align: right;
+
+  input {
+    margin-top:10px;
+    background-color:#F2F2F2;
+    outline:none;
+    border-radius:5px;
+    font-size:12px;
+    text-transform: lowercase;
+    font-variant: small-caps;
+  }
 }

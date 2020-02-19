@@ -9,7 +9,7 @@ class Api::V1::PostsController < ApplicationController
 
   def show
     post = Post.find(params[:id])
-    render json: post
+    render json: Post.all
   end
 
   def create
@@ -21,6 +21,23 @@ class Api::V1::PostsController < ApplicationController
     else
       render json: post.errors.full_messages
     end
+  end
+
+  def update
+    post = Post.find(params[:id])
+    post.assign_attributes(post_params)
+
+    if post.save
+      render json: post
+    else
+      render json: post.errors.full_messages
+    end
+  end
+
+  def destroy
+    post = Post.find(params[:id])
+    post.destroy
+    render json: post
   end
 
   private

@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import PromptIndexContainer from './Index/PromptIndexContainer'
-import NewPost from './Form/NewPost'
+import NewPost from './Form/NewPostForm'
 import ProfilePage from './Show/ProfilePage'
 
 export const App = (props) => {
