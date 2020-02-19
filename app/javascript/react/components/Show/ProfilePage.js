@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import UserPosts from './UserPosts'
+
 const ProfilePage = (props) => {
   const [posts, setPosts] = useState([])
   const [user, setUser] = useState([])
@@ -17,8 +18,9 @@ const ProfilePage = (props) => {
       }
     })
     .then(parsedBody => {
+      let parsed = parsedBody.posts
       let userPosts = [];
-      parsedBody.forEach((post) => {
+      parsed.forEach((post) => {
         if (post.user_id == props.match.params.id) {
           userPosts.push(post);
         };
@@ -41,7 +43,7 @@ const ProfilePage = (props) => {
   })
 
   return(
-    <div>
+    <div className="formContainer">
       {userProfilePosts}
     </div>
   )

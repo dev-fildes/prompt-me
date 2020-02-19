@@ -1,16 +1,16 @@
 import React, { Fragment } from 'react'
 
-const UserPosts = (props) => {
+const PostDetail = ({post}) => {
 
   return(
     <Fragment>
     <div className="formTitle">
-      {props.title}
+      {post.title}
     </div>
     <div className="formText">
-      {props.body}
+      {post.body}
     </div>
     </Fragment>
   )
 }
-export default UserPosts
+export default PostDetail
