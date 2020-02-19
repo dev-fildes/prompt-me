@@ -28,7 +28,7 @@ class Api::V1::PostsController < ApplicationController
     post.assign_attributes(post_params)
 
     if post.save
-      render json: post.order('created_at DESC')
+      render json: post
     else
       render json: post.errors.full_messages
     end
