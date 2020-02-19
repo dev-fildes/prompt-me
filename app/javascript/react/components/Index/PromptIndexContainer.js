@@ -94,7 +94,7 @@ const PromptIndexContainer = (props) => {
 
 
   return(
-    <div className="posts-index-container">
+    <div className="formContainer">
     {postTiles}
 
     </div>

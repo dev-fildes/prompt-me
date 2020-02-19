@@ -4,12 +4,12 @@ class Api::V1::PostsController < ApplicationController
 
   def index
     posts = Post.all
-    render json: posts
+    render json: posts.order('created_at DESC')
   end
 
   def show
     post = Post.find(params[:id])
-    render json: Post.all
+    render json: Post.all.order('created_at DESC')
   end
 
   def create
@@ -17,7 +17,7 @@ class Api::V1::PostsController < ApplicationController
     post.user = current_user
     posts = Post.all
     if post.save
-      render json: post
+      render json: post.order('created_at DESC')
     else
       render json: post.errors.full_messages
     end
@@ -28,7 +28,7 @@ class Api::V1::PostsController < ApplicationController
     post.assign_attributes(post_params)
 
     if post.save
-      render json: post
+      render json: post.order('created_at DESC')
     else
       render json: post.errors.full_messages
     end

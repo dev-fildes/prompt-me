@@ -54,3 +54,4 @@ gem 'devise'
 gem 'webpacker', '~> 3.3'
 gem "carrierwave"
 gem "active_model_serializers"
+gem 'faraday'

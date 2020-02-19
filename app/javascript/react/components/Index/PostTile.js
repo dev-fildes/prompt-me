@@ -26,33 +26,35 @@ const PostTile = (props) => {
   if (post.currentUser && post.currentUser.id === post.creator || post.currentUser && post.currentUser.admin === true) {
     updateDeleteButtons = <span>
     <input className="deleteButton" onClick={handleDelete} type="submit" value="Delete" />
-  <input className="deleteButton" onClick={handleFormDisplay} type="submit" value="Edit" />
-</span>
-}
+    <input className="deleteButton" onClick={handleFormDisplay} type="submit" value="Edit" />
+    </span>
+  }
 
 
-let display
-if (post) {
-  display = <Fragment>
-  <PostDetail post={post} />
-{updateDeleteButtons}
-</Fragment>
-}
-if (editClicked) {
-  display = <NewPostForm
-  handleFormDisplay={handleFormDisplay}
-  post={post}
-  editPost={props.editPost}
-  closeEditForm={closeEditForm}
-  />
-}
+  let display
+  if (post) {
+    display = <Fragment>
+    <PostDetail post={post} />
+    <div className="deleteButtonsep">
+    {updateDeleteButtons}
+    </div>
+    </Fragment>
+  }
+  if (editClicked) {
+    display = <NewPostForm
+    handleFormDisplay={handleFormDisplay}
+    post={post}
+    editPost={props.editPost}
+    closeEditForm={closeEditForm}
+    />
+  }
 
 
-return(
-  <div className="formContainer">
-  {display}
-  </div>
-)
+  return(
+    <div className="formContainer">
+    {display}
+    </div>
+  )
 }
 
 export default PostTile;
