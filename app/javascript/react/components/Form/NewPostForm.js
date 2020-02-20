@@ -10,8 +10,8 @@ const NewPostForm = (props) => {
   const [error, setError] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
   const [editClicked, setEditClicked] = useState(false);
-  const [attempts, setAttempts] = useState([])
   const [post, setPost] = useState(defaultPost)
+  const [prompt, setPrompt] = useState([])
 
   const handleInput = (event) => {
     setPost({
@@ -29,28 +29,22 @@ const NewPostForm = (props) => {
     }
   }
 
-const promptList = () => {
-    useEffect(() => {
-      fetch('/api/v1/prompts')
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error(`${response.status} ${response.statusText}`);
-        }
-      })
-      .then(parsedBody => {
-        let test = parsedBody.prompt_urls
-        let prompt_array = []
-        test.forEach(rawPrompt => {
-          prompt_array.push(rawPrompt.substring(4).trim())
-        })
-        debugger
-        setAttempts(prompt_array)
-      })
-      .catch(error => console.error(`Error in stash fetch ${error.message}`));
-    }, []);
-}
+
+  const newPrompt = () => {
+    fetch('/api/v1/prompts')
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error(`${response.status} ${response.statusText}`);
+      }
+    })
+    .then(parsedBody => {
+      setPrompt(parsedBody.prompt_urls[1])
+    })
+    .catch(error => console.error(`Error in stash fetch ${error.message}`));
+  }
+
 
   const addNewPost = (formPayload) => {
     fetch('/api/v1/posts', {
@@ -87,7 +81,7 @@ const promptList = () => {
 
   if (editClicked) {
     display = <NewPrompt
-    prompt={prompt}
+      prompt={prompt}
     />
   }
 
@@ -96,36 +90,38 @@ const promptList = () => {
     <div className="formContainer">
       {error[0]}
 
+      {prompt}
+      <button onClick={newPrompt}>new quote</button>
 
-    <form onSubmit={handleSubmit}>
-      <input
-        name="title"
-        type="text"
-        className="form-control"
-        onChange={handleInput}
-        value={post.title || ''}
-        placeholder="Title (optional)"
-      />
-
-    <br/>
-
-      <textarea
-        name="body"
-        className="form-control"
-        id="exampleFormControlTextarea1"
-        type="text"
-        placeholder="Type something.."
-        onChange={handleInput}
-        value={post.body}
+      <form onSubmit={handleSubmit}>
+        <input
+          name="title"
+          type="text"
+          className="form-control"
+          onChange={handleInput}
+          value={post.title || ''}
+          placeholder="Title (optional)"
         />
 
-    <br/>
-      <input
-        className="newButton"
-        type="submit"
-        value="Submit"
-      />
-    </form>
+        <br/>
+
+        <textarea
+          name="body"
+          className="form-control"
+          id="exampleFormControlTextarea1"
+          type="text"
+          placeholder="Type something.."
+          onChange={handleInput}
+          value={post.body}
+        />
+
+        <br/>
+        <input
+          className="newButton"
+          type="submit"
+          value="Submit"
+        />
+      </form>
     </div>
   )
 }
