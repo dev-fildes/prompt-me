@@ -15,8 +15,17 @@ class PromptsWrapper
     prompt = JSON.parse(prompt_list)
 
     prompt_array = prompt["data"]["children"][2..-1].map do |prompts|
-       prompts["data"]["title"]
+      prompts["data"]["title"]
     end
-    return prompt_array
+    prompt_edit = prompt_array.map do |sentence|
+      if sentence.include?("[WP]")
+        sentence.delete_prefix("[WP]").strip
+      else if sentence.include?("[EU]")
+        sentence.delete_prefix("[EU]").strip
+      end
+    end
   end
+
+  return prompt_edit.compact.sample(5)
+end
 end
