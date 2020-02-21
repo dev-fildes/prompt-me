@@ -9,13 +9,13 @@ class Api::V1::PostsController < ApplicationController
 
   def show
     post = Post.find(params[:id])
-    render json: Post.all.order('created_at DESC')
+    render json: Post.order('created_at DESC')
   end
 
   def create
     post = Post.new(post_params)
     post.user = current_user
-    posts = Post.all
+
     if post.save
       render json: post
     else

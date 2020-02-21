@@ -6,7 +6,9 @@ const NewPostForm = (props) => {
     title: "",
     body: ""
   }
+
   if (props.editPost) defaultPost = props.post
+
   const [error, setError] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
   const [editClicked, setEditClicked] = useState(false);
@@ -29,7 +31,6 @@ const NewPostForm = (props) => {
     }
   }
 
-
   const newPrompt = () => {
     fetch('/api/v1/prompts')
     .then(response => {
@@ -44,7 +45,6 @@ const NewPostForm = (props) => {
     })
     .catch(error => console.error(`Error in stash fetch ${error.message}`));
   }
-
 
   const addNewPost = (formPayload) => {
     fetch('/api/v1/posts', {
@@ -78,13 +78,11 @@ const NewPostForm = (props) => {
     return <Redirect to="/" />
   }
 
-
   if (editClicked) {
     display = <NewPrompt
       prompt={prompt}
     />
   }
-
 
   return(
     <div className="formContainer">
