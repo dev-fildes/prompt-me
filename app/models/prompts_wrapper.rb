@@ -25,7 +25,6 @@ class PromptsWrapper
       end
     end
   end
-
   return prompt_edit.compact.sample(5)
 end
 end
