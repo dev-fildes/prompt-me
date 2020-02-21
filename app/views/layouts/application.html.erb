@@ -34,7 +34,7 @@
 
             <%- if current_user -%>
             <div class="media">
-              <img src=<%= current_user.profile_photo.url %>/ class="navBarUserIcon">
+              <img src=<%= current_user.profile_photo.url %> class="navBarUserIcon">
               <div class="media-body">
                 <a href=/profile/<%= current_user.id %>><%= current_user.username %></a>
                 <div class="usertext">

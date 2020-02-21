@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, Fragment } from 'react'
 import { Redirect } from 'react-router-dom'
 
 const NewPostForm = (props) => {
   let defaultPost = {
     title: "",
-    body: ""
+    body:  ""
   }
+
 
   if (props.editPost) defaultPost = props.post
 
@@ -41,7 +42,7 @@ const NewPostForm = (props) => {
       }
     })
     .then(parsedBody => {
-      setPrompt(parsedBody.prompt_urls[1])
+      setPrompt(parsedBody)
     })
     .catch(error => console.error(`Error in stash fetch ${error.message}`));
   }
@@ -81,16 +82,20 @@ const NewPostForm = (props) => {
   if (editClicked) {
     display = <NewPrompt
       prompt={prompt}
-    />
+              />
   }
+  let newPromptButton
+  if (props.match && props.match.path === '/new') {
+    debugger
+    newPromptButton = <button onClick={newPrompt}>new quote</button>
+  }
+
 
   return(
     <div className="formContainer">
       {error[0]}
-
+      {newPromptButton}
       {prompt}
-      <button onClick={newPrompt}>new quote</button>
-
       <form onSubmit={handleSubmit}>
         <input
           name="title"
