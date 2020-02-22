@@ -8,6 +8,7 @@ const PostTile = (props) => {
   const [editClicked, setEditClicked] = useState(false);
   let post = props.post
 
+
   const closeEditForm = () => {
     setEditClicked(false)
   }
@@ -21,12 +22,14 @@ const PostTile = (props) => {
   const handleFormDisplay = () => {
     setEditClicked(!editClicked)
   }
-
+  if(post.currentUser == null) {
+     props.post.currentUser = "Guest"
+  }
   let updateDeleteButtons;
   if (post.currentUser.id === props.creator || post.currentUser.admin === true) {
     updateDeleteButtons = <span>
-      <input className="deleteButton" onClick={handleDelete} type="submit" value="Delete" />
-      <input className="deleteButton" onClick={handleFormDisplay} type="submit" value="Edit" />
+    <input className="deleteButton" onClick={handleDelete} type="submit" value="Delete" />
+    <input className="deleteButton" onClick={handleFormDisplay} type="submit" value="Edit" />
     </span>
   }
 
@@ -34,25 +37,25 @@ const PostTile = (props) => {
   let display
   if (post) {
     display = <Fragment>
-      <PostDetail post={post} />
-      <div className="deleteButtonsep">
-        {updateDeleteButtons}
-      </div>
+    <PostDetail post={post} />
+    <div className="deleteButtonsep">
+    {updateDeleteButtons}
+    </div>
     </Fragment>
   }
   if (editClicked) {
     display = <NewPostForm
-      handleFormDisplay={handleFormDisplay}
-      post={post}
-      editPost={props.editPost}
-      closeEditForm={closeEditForm}
+    handleFormDisplay={handleFormDisplay}
+    post={post}
+    editPost={props.editPost}
+    closeEditForm={closeEditForm}
     />
   }
 
 
   return(
     <Fragment>
-      {display}
+    {display}
     </Fragment>
   )
 }
