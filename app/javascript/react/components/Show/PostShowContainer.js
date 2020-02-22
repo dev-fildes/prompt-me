@@ -1,38 +1,42 @@
-import React, {Fragment, useEffect, useState} from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 
 import PostDetail from '../Index/PostDetail'
+import ShowPageDetail from './ShowPageDetail'
 
 const PostShowContainer = (props) => {
   const [post, setPost] = useState({})
-  debugger
+  const [editClicked, setEditClicked] = useState(false)
+  const [signedInUser, setSignedInUser] = useState(null)
+
   let id = props.match.params.id
   useEffect(() => {
     fetch(`/api/v1/posts/${id}`)
     .then(response => {
       if(response.ok){
-        return response
+        return response.json();
       } else {
         const error = new Error(`${response.status} ${response.statusText}`)
         throw(error)
       }
     })
-    .then(parsedBody => parsedBody.json())
     .then(parsedBody => {
-      setPost(parsedBody.post)
+      debugger
+      setSignedInUser(parsedBody.currentUser)
+      setPost(parsedBody.posts)
     })
     .catch(error => {
       console.error(`Error in fetch ${error.message}`)
     })
   }, [])
 
+debugger
   return(
-    <Fragment>
-      <div className="formContainer">
-        <PostDetail
-          post={post}
-        />
-      </div>
-    </Fragment>
+    <div className="formContainer">
+      <ShowPageDetail
+        title={post.title}
+        body={post.body}
+      />
+    </div>
   )
 }
 export default PostShowContainer

@@ -9,7 +9,10 @@ class Api::V1::PostsController < ApplicationController
 
   def show
     post = Post.find(params[:id])
-    render json: post
+    render json: {
+      "posts" => post,
+      "currentUser" => current_user
+    }
   end
 
   def create
