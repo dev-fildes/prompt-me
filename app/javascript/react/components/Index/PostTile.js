@@ -1,11 +1,12 @@
-import React, { useState, Fragment } from 'react';
-import { Redirect } from 'react-router-dom'
+import React, { useState, Fragment, useEffect } from 'react';
+import { Link, Redirect } from 'react-router-dom'
 
 import NewPostForm from '../Form/NewPostForm';
 import PostDetail from './PostDetail';
 
 const PostTile = (props) => {
   const [editClicked, setEditClicked] = useState(false);
+
   let post = props.post
 
 
@@ -23,39 +24,36 @@ const PostTile = (props) => {
     setEditClicked(!editClicked)
   }
   if(post.currentUser == null) {
-     props.post.currentUser = "Guest"
+    props.post.currentUser = "Guest"
   }
   let updateDeleteButtons;
   if (post.currentUser.id === props.creator || post.currentUser.admin === true) {
     updateDeleteButtons = <span>
-    <input className="deleteButton" onClick={handleDelete} type="submit" value="Delete" />
-    <input className="deleteButton" onClick={handleFormDisplay} type="submit" value="Edit" />
+      <input className="deleteButton" onClick={handleDelete} type="submit" value="Delete" />
+      <input className="deleteButton" onClick={handleFormDisplay} type="submit" value="Edit" />
     </span>
   }
-
 
   let display
   if (post) {
     display = <Fragment>
-    <PostDetail post={post} />
-    <div className="deleteButtonsep">
-    {updateDeleteButtons}
-    </div>
+      <PostDetail
+       post={post}
+        />
     </Fragment>
   }
   if (editClicked) {
     display = <NewPostForm
-    handleFormDisplay={handleFormDisplay}
-    post={post}
-    editPost={props.editPost}
-    closeEditForm={closeEditForm}
+      handleFormDisplay={handleFormDisplay}
+      post={post}
+      editPost={props.editPost}
+      closeEditForm={closeEditForm}
     />
   }
 
-
   return(
     <Fragment>
-    {display}
+      <Link to={`/posts/${post.id}`}>{display}</Link>
     </Fragment>
   )
 }

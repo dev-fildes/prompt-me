@@ -1,15 +1,15 @@
 import React, { Fragment } from 'react'
 
-const PostDetail = ({post}) => {
+const PostDetail = (props) => {
 
   return(
     <Fragment>
-    <div className="formTitle">
-      {post.title}
-    </div>
-    <div className="formText">
-      {post.body}
-    </div>
+      <div className="formTitle">
+        {props.post.title}
+      </div>
+      <div className="formText">
+        {props.post.body}
+      </div>
     </Fragment>
   )
 }

@@ -9,7 +9,7 @@ class Api::V1::PostsController < ApplicationController
 
   def show
     post = Post.find(params[:id])
-    render json: Post.order('created_at DESC')
+    render json: post
   end
 
   def create
