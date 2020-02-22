@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 import { Redirect } from 'react-router-dom'
 
 const NewPostForm = (props) => {
   let defaultPost = {
     title: "",
-    body: ""
+    body:  ""
   }
 
   if (props.editPost) defaultPost = props.post
@@ -41,7 +41,7 @@ const NewPostForm = (props) => {
       }
     })
     .then(parsedBody => {
-      setPrompt(parsedBody.prompt_urls[1])
+      setPrompt(parsedBody[Math.floor(Math.random() * parsedBody.length)])
     })
     .catch(error => console.error(`Error in stash fetch ${error.message}`));
   }
@@ -84,12 +84,19 @@ const NewPostForm = (props) => {
     />
   }
 
+
+  let newPromptButton
+  if (props.match && props.match.path === '/new') {
+    newPromptButton = <button type="button" onClick={newPrompt}> <i className="fas fa-sync-alt"></i></button>
+  }
+
   return(
     <div className="formContainer">
       {error[0]}
 
       {prompt}
-      <button onClick={newPrompt}>new quote</button>
+
+      {newPromptButton}
 
       <form onSubmit={handleSubmit}>
         <input
@@ -106,7 +113,6 @@ const NewPostForm = (props) => {
         <textarea
           name="body"
           className="form-control"
-          id="exampleFormControlTextarea1"
           type="text"
           placeholder="Type something.."
           onChange={handleInput}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment, Refirec } from 'react';
+import React, { useState, Fragment } from 'react';
 import { Redirect } from 'react-router-dom'
 
 import NewPostForm from '../Form/NewPostForm';
@@ -7,6 +7,7 @@ import PostDetail from './PostDetail';
 const PostTile = (props) => {
   const [editClicked, setEditClicked] = useState(false);
   let post = props.post
+
 
   const closeEditForm = () => {
     setEditClicked(false)
@@ -21,9 +22,11 @@ const PostTile = (props) => {
   const handleFormDisplay = () => {
     setEditClicked(!editClicked)
   }
-
+  if(post.currentUser == null) {
+     props.post.currentUser = "Guest"
+  }
   let updateDeleteButtons;
-  if (post.currentUser && post.currentUser.id === post.creator || post.currentUser && post.currentUser.admin === true) {
+  if (post.currentUser.id === props.creator || post.currentUser.admin === true) {
     updateDeleteButtons = <span>
     <input className="deleteButton" onClick={handleDelete} type="submit" value="Delete" />
     <input className="deleteButton" onClick={handleFormDisplay} type="submit" value="Edit" />
@@ -51,9 +54,9 @@ const PostTile = (props) => {
 
 
   return(
-    <div className="formContainer">
+    <Fragment>
     {display}
-    </div>
+    </Fragment>
   )
 }
 

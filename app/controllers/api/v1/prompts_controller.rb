@@ -1,10 +1,8 @@
 class Api::V1::PromptsController < ApplicationController
 
   def index
-    results = PromptsWrapper.retrieve_prompts
-    binding.pry
-
-    render json: results
+    current_prompt = current_user.daily
+    render json: current_prompt
   end
 
   private
