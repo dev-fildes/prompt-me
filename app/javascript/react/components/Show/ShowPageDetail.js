@@ -23,7 +23,6 @@ const ShowPageDetail = ({title, body, post, editPost, deletePost}) => {
   let updateDeleteButtons;
   if(post.current_user) {
     if (post.current_user.id === post.user.id || post.current_user.admin === true) {
-debugger
       updateDeleteButtons = <span>
         <input className="deleteButton" onClick={handleDelete} type="submit" value="Delete" />
         <input className="deleteButton" onClick={handleFormDisplay} type="submit" value="Edit" />

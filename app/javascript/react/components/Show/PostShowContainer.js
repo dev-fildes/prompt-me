@@ -5,6 +5,7 @@ import PromptIndexContainer from '../Index/PromptIndexContainer'
 import PostDetail from '../Index/PostDetail'
 import ShowPageDetail from './ShowPageDetail'
 import ReviewTile from '../Review/ReviewTile'
+import ReviewForm from '../Form/ReviewForm'
 
 const PostShowContainer = (props) => {
   const [post, setPost] = useState({})
@@ -97,6 +98,53 @@ const PostShowContainer = (props) => {
     )
   })
 
+  const addNewReview = (formPayload, emptyReviewForm) => {
+      fetch(`/api/v1/posts/${id}/reviews/`, {
+        credentials: 'same-origin',
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(formPayload)
+      })
+        .then(response => {
+          if(response.ok){
+            return response.json()
+          } else {
+            const error = new Error(`${response.status} ${response.statusText}`)
+            throw(error)
+          }
+        })
+        .then(parsedBody => {
+          if (typeof parsedBody === "object" && !Array.isArray(parsedBody)) {
+            setReviews([
+              parsedBody.review,
+              ...reviews
+            ])
+            setPost(parsedBody.review.post)
+            setErrors([])
+            emptyReviewForm()
+          } else {
+            setErrors(parsedBody)
+          }
+        })
+        .catch(error => console.error(`Error in fetch ${error.message}`))
+    }
+
+    let reviewForm
+
+  if(signedInUser) {
+    reviewForm = <ReviewForm
+      addNewReview={addNewReview}
+    />
+} else {
+  reviewForm =
+    <div className="signInPrompt">
+      <hr/>
+      Please <a href="/users/sign_in">Sign In</a> or <a href="/users/sign_up">Sign Up</a> to leave a review.
+    </div>
+}
 
   return(
     <div>
@@ -109,6 +157,7 @@ const PostShowContainer = (props) => {
         deletePost={deletePost}
       />
       {reviewList}
+      {reviewForm}
     </div>
   )
 }
