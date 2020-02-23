@@ -4,10 +4,13 @@ import { Redirect } from 'react-router-dom';
 import PromptIndexContainer from '../Index/PromptIndexContainer'
 import PostDetail from '../Index/PostDetail'
 import ShowPageDetail from './ShowPageDetail'
+import ReviewTile from '../Review/ReviewTile'
 
 const PostShowContainer = (props) => {
   const [post, setPost] = useState({})
   const [shouldRedirect, setShouldRedirect] = useState(false)
+  const [signedInUser, setSignedInUser] = useState(null)
+  const [reviews, setReviews] = useState([])
   const [errors, setErrors] = useState([])
 
   let id = props.match.params.id
@@ -22,6 +25,8 @@ const PostShowContainer = (props) => {
       }
     })
     .then(parsedBody => {
+      setSignedInUser(parsedBody.post.current_user)
+      setReviews(parsedBody.post.reviews)
       setPost(parsedBody.post)
     })
     .catch(error => {
@@ -79,17 +84,31 @@ const PostShowContainer = (props) => {
     .catch(error => console.error(`Error in post patch fetch ${error.message}`))
   }
 
+  const reviewList = reviews.map(review => {
+    return (
+      <ReviewTile
+        key={review.id}
+        review={review}
+        user={review.user}
+        signedInUser={signedInUser}
+        postId={id}
+        setPost={setPost}
+      />
+    )
+  })
+
+
   return(
     <div>
       <ShowPageDetail
         title={post.title}
         body={post.body}
-        currentUser={post.current_user}
-        creator={post.user_id}
         post={post}
+        signedInUser={signedInUser}
         editPost={editPost}
         deletePost={deletePost}
       />
+      {reviewList}
     </div>
   )
 }
