@@ -11,7 +11,7 @@ const NewPostForm = (props) => {
 
   const [error, setError] = useState([])
   const [shouldRedirect, setShouldRedirect] = useState(false)
-  const [editClicked, setEditClicked] = useState(false);
+  const [editClicked, setEditClicked] = useState(false)
   const [post, setPost] = useState(defaultPost)
   const [prompt, setPrompt] = useState([])
 
@@ -81,7 +81,7 @@ const NewPostForm = (props) => {
   if (editClicked) {
     display = <NewPrompt
       prompt={prompt}
-    />
+              />
   }
 
 
