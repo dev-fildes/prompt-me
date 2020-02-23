@@ -8,7 +8,7 @@ const ShowPageDetail = ({title, body, post, editPost, deletePost}) => {
 
   const handleDelete = () => {
     if (window.confirm(`Are you sure? You will be unable to retrieve it after this, please make sure you have this backed up elsewhere.`)) {
-      props.deletePost(props.post.id);
+      deletePost(post.id);
     };
   };
 
