@@ -1,6 +1,6 @@
-class Post < ApplicationRecord
+class Review < ApplicationRecord
   belongs_to :user
-  has_many :reviews
+  belongs_to :post
 
   validates :body, presence: true
 end

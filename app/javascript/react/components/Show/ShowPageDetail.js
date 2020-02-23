@@ -3,13 +3,12 @@ import React, { useState, Fragment } from 'react'
 import NewPostForm from '../Form/NewPostForm'
 import ShowDetail from './ShowDetail'
 
-const ShowPageDetail = (props) => {
-  const [post, setPost] = useState([])
+const ShowPageDetail = ({title, body, post, editPost, deletePost}) => {
   const [editClicked, setEditClicked] = useState(false)
 
   const handleDelete = () => {
     if (window.confirm(`Are you sure? You will be unable to retrieve it after this, please make sure you have this backed up elsewhere.`)) {
-      props.deletePost(props.post.id);
+      deletePost(post.id);
     };
   };
 
@@ -22,8 +21,8 @@ const ShowPageDetail = (props) => {
   }
 
   let updateDeleteButtons;
-  if(props.currentUser) {
-    if (props.currentUser.id === props.creator || props.currentUser.admin === "true") {
+  if(post.current_user) {
+    if (post.current_user.id === post.user.id || post.current_user.admin === true) {
       updateDeleteButtons = <span>
         <input className="deleteButton" onClick={handleDelete} type="submit" value="Delete" />
         <input className="deleteButton" onClick={handleFormDisplay} type="submit" value="Edit" />
@@ -31,29 +30,29 @@ const ShowPageDetail = (props) => {
     }
   }
 
-  let display
-  if (props) {
-    display =
+  let displayEdit
+  if (body) {
+    displayEdit =
     <Fragment>
-      <ShowDetail post={props.post}/>
+      <ShowDetail post={post}/>
       <div className="deleteButtonsep">
         {updateDeleteButtons}
       </div>
     </Fragment>
   }
   if (editClicked) {
-    display =
+    displayEdit =
     <NewPostForm
       handleFormDisplay={handleFormDisplay}
-      post={props.post}
-      editPost={props.editPost}
+      post={post}
+      editPost={editPost}
       closeEditForm={closeEditForm}
     />
   }
 
   return(
     <div className="formContainer">
-      {display}
+      {displayEdit}
     </div>
   )
 }

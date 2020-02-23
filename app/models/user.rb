@@ -3,6 +3,7 @@ class User < ApplicationRecord
   after_create :create_profile
 
   has_many :posts
+  has_many :reviews
 
   attr_writer :login
   mount_uploader :profile_photo, ProfilePhotoUploader
