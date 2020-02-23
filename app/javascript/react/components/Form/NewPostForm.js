@@ -79,9 +79,10 @@ const NewPostForm = (props) => {
   }
 
   if (editClicked) {
-    display = <NewPrompt
+    display =
+    <NewPrompt
       prompt={prompt}
-              />
+    />
   }
 
 

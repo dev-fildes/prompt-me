@@ -1,12 +1,12 @@
 import React, { useState, useEffect, Fragment } from 'react'
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
 
+import PromptIndexContainer from '../Index/PromptIndexContainer'
 import PostDetail from '../Index/PostDetail'
 import ShowPageDetail from './ShowPageDetail'
 
 const PostShowContainer = (props) => {
   const [post, setPost] = useState({})
-  const [signedInUser, setSignedInUser] = useState(null)
   const [shouldRedirect, setShouldRedirect] = useState(false)
   const [errors, setErrors] = useState([])
 
@@ -22,8 +22,7 @@ const PostShowContainer = (props) => {
       }
     })
     .then(parsedBody => {
-      setSignedInUser(parsedBody.currentUser)
-      setPost(parsedBody.posts)
+      setPost(parsedBody.post)
     })
     .catch(error => {
       console.error(`Error in fetch ${error.message}`)
@@ -44,12 +43,12 @@ const PostShowContainer = (props) => {
     })
     .then(parsedBody => {
       setPost(parsedBody.post)
+      setShouldRedirect(true)
     })
     .catch(error => console.error(`Error in post delete fetch ${error.message}`))
   }
-
-  if(setShouldRedirect) {
-    <Redirect push to="/posts/${id}" />
+  if(shouldRedirect) {
+    return <Redirect to="/" />
   }
 
   const editPost = (payload, closeEditForm) => {
@@ -76,23 +75,22 @@ const PostShowContainer = (props) => {
         setErrors(parsedBody)
       }
       closeEditForm()
-      setShouldRedirect(true)
     })
     .catch(error => console.error(`Error in post patch fetch ${error.message}`))
   }
 
   return(
-    <>
-    <ShowPageDetail
-    title={post.title}
-    body={post.body}
-    creator={post.user_id}
-    post={post}
-    currentUser={signedInUser}
-    editPost={editPost}
-    deletePost={deletePost}
-    />
-    </>
+    <div>
+      <ShowPageDetail
+        title={post.title}
+        body={post.body}
+        currentUser={post.current_user}
+        creator={post.user_id}
+        post={post}
+        editPost={editPost}
+        deletePost={deletePost}
+      />
+    </div>
   )
 }
 export default PostShowContainer

@@ -1,6 +1,6 @@
 class Api::V1::PostsController < ApplicationController
   protect_from_forgery unless: -> { request.format.json? }
-  skip_before_action :verify_authenticity_token, only: [:create]
+  skip_before_action :verify_authenticity_token, only: [:create, :update, :destroy]
 
   def index
     posts = Post.all
@@ -9,10 +9,7 @@ class Api::V1::PostsController < ApplicationController
 
   def show
     post = Post.find(params[:id])
-    render json: {
-      "posts" => post,
-      "currentUser" => current_user
-    }
+    render json: post
   end
 
   def create

@@ -1,5 +1,4 @@
 import React, { useState, Fragment } from 'react'
-import { Redirect } from 'react-router-dom'
 
 import NewPostForm from '../Form/NewPostForm'
 import ShowDetail from './ShowDetail'
@@ -22,15 +21,15 @@ const ShowPageDetail = (props) => {
     setEditClicked(!editClicked)
   }
 
-      let updateDeleteButtons;
-      if(props.currentUser !== null) {
-        if (props.currentUser.id === props.creator || props.currentUser.admin === true) {
-          updateDeleteButtons = <span>
-            <input className="deleteButton" onClick={handleDelete} type="submit" value="Delete" />
-            <input className="deleteButton" onClick={handleFormDisplay} type="submit" value="Edit" />
-          </span>
-        }
-      }
+  let updateDeleteButtons;
+  if(props.currentUser) {
+    if (props.currentUser.id === props.creator || props.currentUser.admin === "true") {
+      updateDeleteButtons = <span>
+        <input className="deleteButton" onClick={handleDelete} type="submit" value="Delete" />
+        <input className="deleteButton" onClick={handleFormDisplay} type="submit" value="Edit" />
+      </span>
+    }
+  }
 
   let display
   if (props) {
