@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get '/profile', to: 'homes#index'
   get '/users/edit', to: 'homes#index'
   get '/profile/:id', to: 'homes#index'
-
+  get '/posts/:id', to: 'homes#index'
 
   namespace :api do
     namespace :v1 do
