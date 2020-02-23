@@ -10,7 +10,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :posts, only: [:index, :show, :create, :update, :destroy]
+      resources :posts, only: [:index, :show, :create, :update, :destroy] do
+        resources :reviews, only: [:index, :create, :update, :destroy]
+      end
         resources :prompts, only: [:index]
       resource :profile, only: [:index, :show]
     end
