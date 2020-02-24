@@ -23,10 +23,11 @@ const ShowPageDetail = ({title, body, post, editPost, deletePost}) => {
   let updateDeleteButtons;
   if(post.current_user) {
     if (post.current_user.id === post.user.id || post.current_user.admin === true) {
-      updateDeleteButtons = <span>
-        <input className="deleteButton" onClick={handleDelete} type="submit" value="Delete" />
-        <input className="deleteButton" onClick={handleFormDisplay} type="submit" value="Edit" />
-      </span>
+      updateDeleteButtons =
+      <div className="ui small basic right floated buttons">
+        <button className="ui icon button" onClick={handleDelete} type="submit" value="Delete"><i aria-hidden="true" className="trash icon"></i></button>
+        <button className="ui icon button" onClick={handleFormDisplay} type="submit" value="Edit"><i aria-hidden="true" className="cog icon"></i></button>
+      </div>
     }
   }
 
@@ -34,10 +35,10 @@ const ShowPageDetail = ({title, body, post, editPost, deletePost}) => {
   if (body) {
     displayEdit =
     <Fragment>
-      <ShowDetail post={post}/>
-      <div className="deleteButtonsep">
-        {updateDeleteButtons}
-      </div>
+      <ShowDetail post={post}  />
+
+      {updateDeleteButtons}
+
     </Fragment>
   }
   if (editClicked) {
@@ -51,7 +52,7 @@ const ShowPageDetail = ({title, body, post, editPost, deletePost}) => {
   }
 
   return(
-    <div className="formContainer">
+    <div className="ui segment clearfix">
       {displayEdit}
     </div>
   )

@@ -34,7 +34,7 @@ const PromptIndexContainer = (props) => {
 
 
   return(
-    <div className="formContainer">
+    <div className="ui divided items">
       {postTiles}
     </div>
   )

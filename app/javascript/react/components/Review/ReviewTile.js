@@ -71,22 +71,39 @@ const ReviewTile = ({ review, user, signedInUser, postId, setPost, }) => {
 
   let updateDeleteButtons
   if (signedInUser && signedInUser.id === user.id || signedInUser && signedInUser.role === "admin") {
-    updateDeleteButtons = <form>
-      <input className="editButton" onClick={onEditClick} type="button" value="Edit" />•
-      <input  className="deleteButton" onClick={deleteReview} type="button" value="Delete" />
-    </form>
+    updateDeleteButtons =
+    <div className="ui right floated mini buttons">
+      <input
+        className="ui compact button"
+        onClick={onEditClick}
+        value="Edit"
+      />
+      <div className="or"></div>
+      <input
+        className="ui compact negative button"
+        onClick={deleteReview}
+        value="Delete"
+      />
+    </div>
   }
 
   let display =
-  <div>
-
-    <img src={review.user.profile_photo.url} className="reviewerIcon"/>
-    <h3>{tileReview.title}</h3>
-
-
-    <p>{tileReview.body}</p>
-    {updateDeleteButtons}
+  <div className="ui comments">
+    <div className="comment">
+      <a className="avatar"><img src={review.user.profile_photo.url} /></a>
+      <div className="content">
+        <div className="author">{review.user.username}</div>
+        <div className="metadata">
+          <div>{review.user.created_at}</div>
+        </div>
+        <div className="text">
+          {tileReview.body}
+          {updateDeleteButtons}
+        </div>
+      </div>
+    </div>
   </div>
+
   if (editClicked) {
     let errorList
     if (errors.length > 0) {
@@ -97,7 +114,6 @@ const ReviewTile = ({ review, user, signedInUser, postId, setPost, }) => {
     }
     display =
     <div>
-      {errorList}
       <ReviewForm
         editReview={tileReview}
         saveReview={saveReview}
@@ -108,7 +124,6 @@ const ReviewTile = ({ review, user, signedInUser, postId, setPost, }) => {
   if(deleted){
     display = "Review successfully deleted"
   }
-
 
   return(
     <div>

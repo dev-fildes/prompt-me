@@ -156,6 +156,7 @@ const PostShowContainer = (props) => {
         editPost={editPost}
         deletePost={deletePost}
       />
+      <h3 className="ui dividing header">Comments</h3>
       {reviewList}
       {reviewForm}
     </div>

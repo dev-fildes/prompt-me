@@ -85,35 +85,41 @@ const NewPostForm = (props) => {
     />
   }
 
-
   let newPromptButton
   if (props.match && props.match.path === '/new') {
-    newPromptButton = <button type="button" onClick={newPrompt}> <i className="fas fa-sync-alt"></i></button>
+    newPromptButton = <button type="button" onClick={newPrompt}> <i className="fas fa-sync-alt"></i>   Generate a Prompt!</button>
   }
 
   return(
     <div className="formContainer">
       {error[0]}
-
+      <p>
       {prompt}
-
+      </p>
+      <div class="ui horizontal divider">
+  <h4 class="ui header">
       {newPromptButton}
 
-      <form onSubmit={handleSubmit}>
+  </h4>
+</div>
+
+<br/>
+<br/>
+
+      <form onSubmit={handleSubmit} className="ui form">
         <input
           name="title"
           type="text"
-          className="form-control"
           onChange={handleInput}
           value={post.title || ''}
           placeholder="Title (optional)"
         />
 
         <br/>
+        <br/>
 
         <textarea
           name="body"
-          className="form-control"
           type="text"
           placeholder="Type something.."
           onChange={handleInput}
@@ -121,8 +127,10 @@ const NewPostForm = (props) => {
         />
 
         <br/>
+        <br/>
+
         <input
-          className="newButton"
+          className="ui button"
           type="submit"
           value="Submit"
         />
