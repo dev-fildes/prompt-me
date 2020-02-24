@@ -5,14 +5,25 @@ const PostDetail = (props) => {
 
   return(
     <Fragment>
-      <Link to={`/posts/${props.post.id}`}>
-        <div className="formTitle">
-          {props.post.title}
+
+      <div className="item">
+        <div className="image"><img src={props.post.user.profile_photo.url
+        } /></div>
+        <div className="content">
+          <div className="header">{props.post.title}</div>
+          <div className="description">
+            {props.post.body}
+          </div>
+          <div className="extra">
+            <button className="ui right floated button">
+              <Link to={`/posts/${props.post.id}`}>
+                Read More
+              </Link>
+            </button>
+            </div>
+          </div>
         </div>
-        <div className="formText">
-          {props.post.body}
-        </div>
-      </Link>
+
     </Fragment>
   )
 }

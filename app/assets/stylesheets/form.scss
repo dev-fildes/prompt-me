@@ -1,9 +1,22 @@
 .formContainer {
-  border:1px solid #eee;
   background-color: #FFF;
   padding:10px;
-  margin-top:10px;
+  margin-top:20px;
+  border: 1px solid #eee;
+
+  p {
+    text-align: center;
+    padding:10px;
+    font-size:18px;
+    font-weight:bolder;
+  }
 }
+.clearfix::after{
+  content: "";
+  clear: both;
+  display: table;
+}
+
 .formTitle {
   border-bottom: 1px solid #eee;
   padding:5px;
@@ -16,4 +29,30 @@
 .reviewerIcon {
   width:100px;
   height:100px;
+}
+.ui.segment:first-child {
+  margin-top:20px;
+}
+.ui.grid>[class*="eleven wide"].column {
+  margin-top:20px;
+}
+.links {
+  margin-top:100px;
+}
+.item {
+  transition: .2s;
+  transform: scale(1.0);
+}
+.item:hover {
+  transform: scale(1.05);
+  transition: .2s;
+}
+.logo {
+  height:100px;
+}
+.signInPrompt {
+  text-align:center;
+}
+.ui.basic.buttons {
+  margin-top:20px;
 }

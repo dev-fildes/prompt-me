@@ -35,28 +35,44 @@ const ReviewForm = (props) => {
   if (props.editReview) {
     submitButton = "Save"
     formAction = handleSave
-    cancelButton = <input
-      type="button"
-      value="Cancel"
-      onClick={props.cancelClicked}
-    />
-  }
-
-  return (
-    <div>
-      <form onSubmit={formAction}>
-
-        <label>
-          Review
-          <textarea name="body" onChange={handleInput} value={review.body} />
-        </label>
-
-        <input className="button" type="submit" value={submitButton} />
-        {cancelButton}
-
-      </form>
-    </div>
-  )
+    cancelButton =
+      <input
+        className="ui right floated tiny button"
+        type="button"
+        value="Cancel"
+        onClick={props.cancelClicked}
+      />
 }
 
-export default ReviewForm;
+return (
+  <div className="formContainer">
+    <form onSubmit={formAction} className="ui form">
+
+
+      <label>
+        Review
+      </label>
+        <textarea
+          name="body"
+          rows="2"
+          onChange={handleInput} value={review.body}
+        />
+
+        <br/>
+
+        <br/>
+
+        <div className="clearfix">
+          <input
+            className="ui right floated tiny button"
+            type="submit"
+            value={submitButton} />
+            {cancelButton}
+          </div>
+        </form>
+      </div>
+
+    )
+  }
+
+  export default ReviewForm;

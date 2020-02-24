@@ -1,16 +1,23 @@
 import React, { Fragment } from 'react'
 
 const ShowDetail = (props) => {
-
   let post = props.post
+  let optionalTitle;
+
+  if(post.title !== null) {
+    optionalTitle =  <><h2 className="ui left floated header">
+      {post.title}
+    </h2>
+      <div className="ui clearing divider"></div>
+    </>
+  }
+
   return(
     <Fragment>
-      <div className="formTitle">
-      {post.title}
-      </div>
-      <div className="formText">
+      {optionalTitle}
+
       {post.body}
-      </div>
+
     </Fragment>
   )
 }
