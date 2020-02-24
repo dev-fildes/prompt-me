@@ -15,7 +15,7 @@ const PostDetail = (props) => {
             {props.post.body}
           </div>
           <div className="extra">
-            <button className="ui primary right floated button">
+            <button className="ui right floated button">
               <Link to={`/posts/${props.post.id}`}>
                 Read More
               </Link>

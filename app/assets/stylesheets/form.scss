@@ -2,13 +2,14 @@
   background-color: #FFF;
   padding:10px;
   margin-top:20px;
+  border: 1px solid #eee;
 
-   p {
-     text-align: center;
-     padding:10px;
-     font-size:18px;
-     font-weight:bolder;
-   }
+  p {
+    text-align: center;
+    padding:10px;
+    font-size:18px;
+    font-weight:bolder;
+  }
 }
 .clearfix::after{
   content: "";
@@ -34,4 +35,22 @@
 }
 .ui.grid>[class*="eleven wide"].column {
   margin-top:20px;
+}
+.links {
+  margin-top:100px;
+}
+.item {
+  transition: .2s;
+    transform: scale(1.0);
+}
+.item:hover {
+  transform: scale(1.1);
+  transition: .2s;
+  background-color:red;
+}
+.logo {
+  height:100px;
+}
+.signInPrompt {
+  text-align:center;
 }

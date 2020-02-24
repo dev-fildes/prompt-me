@@ -8,7 +8,7 @@ const ShowDetail = (props) => {
     optionalTitle =  <><h2 className="ui left floated header">
       {post.title}
     </h2>
-      <div class="ui clearing divider"></div>
+      <div className="ui clearing divider"></div>
     </>
   }
 
@@ -17,7 +17,7 @@ const ShowDetail = (props) => {
       {optionalTitle}
 
       {post.body}
-      
+
     </Fragment>
   )
 }

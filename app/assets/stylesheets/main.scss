@@ -1,12 +1,18 @@
 html, body {
   height:100%;
 }
+
+body {
+  background-color: #fafafa;
+}
 .ui.grid {
   height:100%
 }
 
 .ui.inverted.vertical.labeled.icon.ui.overlay.left.visible.sidebar.menu {
 width:20%;
+background-color: #333;
+border-right:1px solid #ddd;
 }
 
 .ui.grid>[class*="four wide"].column {
@@ -54,12 +60,15 @@ width:20%;
 }
 .navbar-brand {
   line-height:2em;
+  position:relative;
   font-size: 26px;
-  font-family:Montserrat;
-  font-size: 26px;
-  font-weight:bold;
+  font-style: italic;
+  font-size: 36px;
+  font-weight:bolder;
+  a {
+    color:#26ABA6!important;
+  }
 }
-
 .sidenav {
   width:400px;
   position:relative;
@@ -114,4 +123,17 @@ width:20%;
 .deleteButtonsep {
   border-top:1px solid #f2f2f2;
   padding:5px;
+}
+.sidebarbg {
+  height:160px;
+  background-color:#f6f6f6;
+}
+.useicon {
+  border-radius:100px;
+  width:150px;
+  height:150px;
+  margin:10px auto;
+  position:relative;
+  border:2px solid #333;
+  background-color:#f6f6f6;
 }

@@ -141,7 +141,8 @@ const PostShowContainer = (props) => {
 } else {
   reviewForm =
     <div className="signInPrompt">
-      <hr/>
+    <br/>
+      <h3 className="ui dividing header"></h3>
       Please <a href="/users/sign_in">Sign In</a> or <a href="/users/sign_up">Sign Up</a> to leave a review.
     </div>
 }

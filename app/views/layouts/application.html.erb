@@ -5,9 +5,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" >
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
+  <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
 
   <script src="https://kit.fontawesome.com/d414e5ddf1.js" crossorigin="anonymous"></script>
   <%= stylesheet_link_tag 'application', media: 'all' %>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
   <%= csrf_meta_tags %>
 </head>
 
@@ -15,24 +21,59 @@
 
   <div class="ui grid">
     <div class="four wide column">
-        <div class="ui inverted vertical labeled icon ui overlay left visible sidebar menu">
-          <a class="navbar-brand" href="/">Prompt Me!</a>
+      <div class="ui inverted vertical labeled icon ui overlay left visible sidebar menu">
+
+        <%- if current_user -%>
+        <div class="sidebarbg">
           <form class="form-inline">
 
+            <a class="navbar-brand" href="/">Prompt Me!</a> <img src="https://images2.imgbox.com/ab/2e/wBze4upT_o.png" class="logo"/>
 
-            <%- if current_user -%>
-            <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, :class => "btn btn-outline-secondary" %>
+            <img class="useicon" src=<%= current_user.profile_photo.url %> />
+            <br />
 
-            <%- else -%>
-            <%= link_to 'Sign Up', new_user_registration_path, :class => "btn btn-outline-secondary" %>
-            <%= link_to 'Sign In', new_user_session_path, :class => "btn btn-outline-secondary" %>
-            <%- end -%>
-          </form>
           </div>
+          <div class="links">
+
+            <a href="/new" class="item linksfont">
+              New Post
+            </a>
+
+            <a href=/profile/<%= current_user.id %> class="item linksfont">
+              Profile
+            </a>
+            <a href="/" class="item linksfont">
+              Contact Us
+            </a>
+
+            <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, :class => "item linksfont" %>
+
+          </div>
+        </form>
+
+        <%- else -%>
+        <div class="sidebarbg">
+          <form class="form-inline">
+
+            <a class="navbar-brand" href="/">Prompt Me!</a>
+
+            <img class="useicon" src='https://images2.imgbox.com/50/1c/kA6Wqtbx_o.png' />
+            <br />
+
+          </div>
+          <div class="links">
+            <%= link_to 'Sign Up', new_user_registration_path, :class => "item signbutton" %>
+            <%= link_to 'Sign In', new_user_session_path, :class => "item signbutton" %>
+
+            <a href="/" class="item linksfont">
+              Contact Us
+            </a>
+          </div>
+
+          <%- end -%>
+        </div>
       </div>
-
       <div class="eleven wide column">
-
 
         <%- flash.each do |key, value| -%>
         <div class="flash flash-<%= key %>">
@@ -42,11 +83,6 @@
         <%= yield %>
 
         <%- if current_user -%>
-
-        <div class="newPostButton">
-
-          <a href="/new"><i class="fas fa-plus"></i></a>
-        </div>
 
         <%- end %>
         <%= javascript_include_tag 'application' %>
@@ -59,6 +95,6 @@
         <%= javascript_pack_tag 'application' %>
         <%= yield :extra_footer %>
       </div>
-    </div>
-  </body>
-  </html>
+
+    </body>
+    </html>

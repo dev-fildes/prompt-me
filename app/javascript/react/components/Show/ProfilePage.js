@@ -43,7 +43,7 @@ const ProfilePage = (props) => {
   })
 
   return(
-    <div className="formContainer">
+    <div>
       {userProfilePosts}
     </div>
   )
