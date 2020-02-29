@@ -36,6 +36,7 @@ const ProfilePage = (props) => {
     return(
       <UserPosts
         key={post.id}
+        id={post.id}
         body={post.body}
         title={post.title}
         />
@@ -43,7 +44,7 @@ const ProfilePage = (props) => {
   })
 
   return(
-    <div className="ui segment clearfix">
+    <div className="ui segment clearfix userPage">
       {userProfilePosts}
     </div>
   )
