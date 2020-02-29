@@ -10,9 +10,9 @@ body {
 }
 
 .ui.inverted.vertical.labeled.icon.ui.overlay.left.visible.sidebar.menu {
-width:20%;
-background-color: #333;
-border-right:1px solid #ddd;
+  width:20%;
+  background-color: #333;
+  border-right:1px solid #ddd;
 }
 
 .ui.grid>[class*="four wide"].column {
@@ -65,10 +65,8 @@ border-right:1px solid #ddd;
   font-style: italic;
   font-size: 36px;
   font-weight:bolder;
-  a {
-    color:#26ABA6!important;
-  }
 }
+
 .sidenav {
   width:400px;
   position:relative;
@@ -143,4 +141,10 @@ border-right:1px solid #ddd;
   background-color:white;
   padding:20px;
   border:1px solid #eee;
+}
+.userPage {
+
+  a, a:hover {
+    color: black;
+  }
 }

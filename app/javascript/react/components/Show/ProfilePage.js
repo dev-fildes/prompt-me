@@ -5,8 +5,8 @@ import UserPosts from './UserPosts'
 const ProfilePage = (props) => {
   const [posts, setPosts] = useState([])
   const [user, setUser] = useState([])
-
   const id = props.match.params.id
+
   useEffect(() => {
     fetch(`/api/v1/posts`)
     .then(response => {
@@ -21,7 +21,7 @@ const ProfilePage = (props) => {
       let parsed = parsedBody.posts
       let userPosts = [];
       parsed.forEach((post) => {
-        if (post.user_id == props.match.params.id) {
+        if (post.user.id == props.match.params.id) {
           userPosts.push(post);
         };
       });
@@ -36,6 +36,7 @@ const ProfilePage = (props) => {
     return(
       <UserPosts
         key={post.id}
+        id={post.id}
         body={post.body}
         title={post.title}
         />
@@ -43,7 +44,7 @@ const ProfilePage = (props) => {
   })
 
   return(
-    <div>
+    <div className="ui segment clearfix userPage">
       {userProfilePosts}
     </div>
   )
