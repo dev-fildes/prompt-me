@@ -13,14 +13,15 @@ const PostDetail = (props) => {
           <div className="header">{props.post.title}</div>
           <div className="description">
             {props.post.body}
-          </div>
+          </div>  <Link to={`/posts/${props.post.id}`}>
           <div className="extra">
             <button className="ui right floated button">
-              <Link to={`/posts/${props.post.id}`}>
+
                 Read More
-              </Link>
+
             </button>
             </div>
+                    </Link>
           </div>
         </div>
 
