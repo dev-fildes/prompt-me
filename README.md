@@ -20,7 +20,6 @@ Prompt Me is a blog-like site where writers can post stories they've written or 
   2. `yarn install`
   3. `bundle exec rake db:create`
   4. `bundle exec rake db:migrate`
-  5. `bundle exec rake db:seed`
-  6. `rails s`
-  7. In a separate tab, `yarn start`
-  8. In a browser, visit, `http://localhost:3000`
+  5. `rails s`
+  6. In a separate tab, `yarn start`
+  7. In a browser, visit, `http://localhost:3000`
