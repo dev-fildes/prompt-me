@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'homes#index'
-  devise_for :users, controllers: { registrations: 'registrations', sessions: 'users/sessions' }
+  devise_for :users
 
   get '/new', to: 'homes#index'
   get '/profile', to: 'homes#index'

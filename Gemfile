@@ -56,3 +56,4 @@ gem "carrierwave"
 gem "fog-aws"
 gem "active_model_serializers"
 gem 'faraday'
+gem 'bootstrap', '~> 4.4.1'
