@@ -4,98 +4,82 @@
   <title>Prompt Me</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" >
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
-  <script
-  src="https://code.jquery.com/jquery-3.1.1.min.js"
-  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>
+
 
   <script src="https://kit.fontawesome.com/d414e5ddf1.js" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   <%= stylesheet_link_tag 'application', media: 'all' %>
 
   <%= csrf_meta_tags %>
 </head>
 
 <body>
-  <div class="ui grid">
-    <div class="four wide column">
-      <div class="ui inverted vertical labeled icon ui overlay left visible sidebar menu">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">Prompt Me!</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <%- if current_user -%>
-        <div class="sidebarbg">
-
-          <a class="navbar-brand" href="/">Prompt Me!</a>
-
-          <img class="useicon" src=<%= current_user.profile_photo.url %> />
-          <br />
-
-        </div>
-        <div class="links">
-
-          <a href="/new" class="item linksfont">
-          <span> New Post</span>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown
           </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <%- if current_user -%>
 
-          <a href=/profile/<%= current_user.id %> class="item linksfont">
-            Profile
-          </a>
+          <%= link_to 'Sign In', new_user_session_path, :class => "item signbutton" %>
 
-          <a href="/" class="item linksfont">
-            Contact Us
-          </a>
-          <a>
-          <form class="form-inline">
-            <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, :class => "item linksfont" %>
-          </form>
-          </a>
-        </div>
-
-
-        <%- else -%>
-        <div class="sidebarbg">
-
-          <a class="navbar-brand" href="/">Prompt Me!</a>
-
-          <img class="useicon" src="https://images2.imgbox.com/ab/2e/wBze4upT_o.png" />
-          <br />
-
-        </div>
-        <div class="links">
-          <form class="form-inline">
-            <%= link_to 'Sign Up', new_user_registration_path, :class => "item signbutton" %>
-            <%= link_to 'Sign In', new_user_session_path, :class => "item signbutton" %>
-          </form>
-          <a href="/" class="item linksfont">
-            Contact Us
-          </a>
-        </div>
-
-        <%- end -%>
-      </div>
+          <%- else -%>
+          <%= link_to 'Sign Up', new_user_registration_path, :class => "item signbutton" %>
+          <%- end %>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
     </div>
-    <div class="eleven wide column">
+  </nav>
+  <%- if current_user -%>
+  <%- flash.each do |key, value| -%>
+  <div class="flash flash-<%= key %>">
+    <%= value %>
+  </div>
+  <%- end -%>
+  <%= yield %>
+  <%- else -%>
 
-      <%- flash.each do |key, value| -%>
-      <div class="flash flash-<%= key %>">
-        <%= value %>
-      </div>
-      <%- end -%>
-      <%= yield %>
 
-      <%- if current_user -%>
+  <%- end -%>
 
-      <%- end %>
-      <%= javascript_include_tag 'application' %>
 
-      <%- if Rails.env.development? || Rails.env.test? -%>
-      <%= javascript_tag do %>
-      window.railsEnv = '<%= Rails.env %>'
-      <%- end -%>
-      <%- end -%>
-      <%= javascript_pack_tag 'application' %>
-      <%= yield :extra_footer %>
-    </div>
 
-  </body>
-  </html>
+
+
+    <%= javascript_include_tag 'application' %>
+
+    <%- if Rails.env.development? || Rails.env.test? -%>
+    <%= javascript_tag do %>
+    window.railsEnv = '<%= Rails.env %>'
+    <%- end -%>
+    <%- end -%>
+    <%= javascript_pack_tag 'application' %>
+    <%= yield :extra_footer %>
+
+
+</body>
+</html>
