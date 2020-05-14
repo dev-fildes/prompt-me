@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import PromptIndexContainer from './Index/PromptIndexContainer'
@@ -7,6 +7,24 @@ import ProfilePage from './Show/ProfilePage'
 import PostShowContainer from './Show/PostShowContainer'
 
 export const App = (props) => {
+  useEffect(() => {
+    fetch(`/api/v1/posts`)
+    .then(response => {
+      if(response.ok){
+        return response.json()
+      } else {
+        const error = new Error(`${response.status} ${response.statusText}`)
+        throw(error)
+      }
+    })
+    .then(parsedBody => {
+      debugger
+    })
+    .catch(error => {
+      console.error(`Error in fetch ${error.message}`)
+    })
+  }, [])
+
   return (
     <BrowserRouter>
       <Switch>
