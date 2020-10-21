@@ -9,10 +9,11 @@
   src="https://code.jquery.com/jquery-3.1.1.min.js"
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   crossorigin="anonymous"></script>
-
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/d414e5ddf1.js" crossorigin="anonymous"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-  <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+
 
   <%= csrf_meta_tags %>
 </head>
@@ -23,79 +24,71 @@
       <div class="ui inverted vertical labeled icon ui overlay left visible sidebar menu">
 
         <%- if current_user -%>
-        <div class="sidebarbg">
-
-          <a class="navbar-brand" href="/">Prompt Me!</a>
-
-          <img class="useicon" src=<%= current_user.profile_photo.url %> />
-          <br />
-
-        </div>
-        <div class="links">
-
-          <a href="/new" class="item linksfont">
-          <span> New Post</span>
-          </a>
-
-          <a href=/profile/<%= current_user.id %> class="item linksfont">
-            Profile
-          </a>
-
-          <a href="/" class="item linksfont">
-            Contact Us
-          </a>
-          <a>
-          <form class="form-inline">
-            <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, :class => "item linksfont" %>
-          </form>
-          </a>
-        </div>
+        <a href="/">
+        <div class="prompt-title">Prompt Me!</div></a>
+        <div class="navbar-brand"></div>
+        <div class="nav-links-box">
 
 
-        <%- else -%>
-        <div class="sidebarbg">
+          <a href="/" class="navigation-links">
+           Home
+         </a>
+         <a href="/new" class="navigation-links">
+           New Post
+         </a>
+         <a href=/profile/<%= current_user.id %> class="navigation-links">
+          Profile
+        </a>
+        <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, :class => "navigation-links" %>
 
-          <a class="navbar-brand" href="/">Prompt Me!</a>
 
-          <img class="useicon" src="https://images2.imgbox.com/ab/2e/wBze4upT_o.png" />
-          <br />
-
-        </div>
-        <div class="links">
-          <form class="form-inline">
-            <%= link_to 'Sign Up', new_user_registration_path, :class => "item signbutton" %>
-            <%= link_to 'Sign In', new_user_session_path, :class => "item signbutton" %>
-          </form>
-          <a href="/" class="item linksfont">
-            Contact Us
-          </a>
-        </div>
-
-        <%- end -%>
       </div>
-    </div>
-    <div class="eleven wide column">
+      <i class="fab fa-twitter-square fa-lg"></i>
+      <i class="fab fa-facebook-square"></i>
 
-      <%- flash.each do |key, value| -%>
-      <div class="flash flash-<%= key %>">
-        <%= value %>
-      </div>
-      <%- end -%>
-      <%= yield %>
+      <%- else -%>
+        <a href="/">
+        <div class="prompt-title">Prompt Me!</div></a>
+        <div class="navbar-brand"></div>
 
-      <%- if current_user -%>
+      <div class="nav-links-box">
+        <a href="/" class="navigation-links">
+         Home
+       </a>
+       <a href="/" class="navigation-links">
+         About
+       </a>
+       <%= link_to 'Login', new_user_session_path, :class => "navigation-links" %>
+       <%= link_to 'Sign Up', new_user_registration_path, :class => "navigation-links" %>
 
-      <%- end %>
-      <%= javascript_include_tag 'application' %>
+     </div>
+     <i class="fab fa-twitter-square fa-lg"></i>
+     <i class="fab fa-facebook-square"></i>
+     <%- end -%>
+   </div>
+ </div>
+ <div class="eleven wide column">
 
-      <%- if Rails.env.development? || Rails.env.test? -%>
-      <%= javascript_tag do %>
-      window.railsEnv = '<%= Rails.env %>'
-      <%- end -%>
-      <%- end -%>
-      <%= javascript_pack_tag 'application' %>
-      <%= yield :extra_footer %>
-    </div>
+  <%- flash.each do |key, value| -%>
+  <div class="flash flash-<%= key %>">
+    <%= value %>
+  </div>
+  <%- end -%>
+  <%= yield %>
 
-  </body>
-  </html>
+  <%- if current_user -%>
+
+  <%- end %>
+
+
+  <%- if Rails.env.development? || Rails.env.test? -%>
+  <%= javascript_tag do %>
+  window.railsEnv = '<%= Rails.env %>'
+  <%- end -%>
+  <%- end -%>
+  <%= javascript_pack_tag 'application' %>
+  <%= yield :extra_footer %>
+</div>
+
+</body>
+</html>

@@ -11,15 +11,16 @@ body {
 
 .ui.inverted.vertical.labeled.icon.ui.overlay.left.visible.sidebar.menu {
   width:20%;
-  background-color: #333;
-  border-right:1px solid #ddd;
+  background-color: #101010;
 }
 
 .ui.grid>[class*="four wide"].column {
   padding:0;
   margin-left:14px;
 }
-
+.ui.items>.item .extra {
+  top:-50px;
+}
 .ui.grid {
   height:100%;
   padding:0;
@@ -27,51 +28,15 @@ body {
 .ui.comments {
   max-width:100%;
 }
-.ui.compact.button {
-  width:80px;
+.content {
+  height:100px;
 }
-.newPostButton {
-  background-color:#D2Df7F;
-  height:80px;
-  width:80px;
-  text-align: center;
-  position:fixed;
-  bottom:0;
-  right:0;
-  margin:40px;
-  box-shadow: 0px 3px 0 0 #333;
-  border-radius: 100px;
-  display:table;
-
-  a {
-    font-size: 3em;
-    color:#FFF;
-    display: table-cell;
-    vertical-align: middle;
-  }
-  &:active {
-    box-shadow: none;
-    border: 2px inset #BDC872;
-  }
-}
-
-.btn {
-  margin:0 10px 0 0;
-}
-.navbar-brand {
-  line-height:2em;
-  position:relative;
-  font-size: 26px;
-  font-style: italic;
-  font-size: 36px;
-  font-weight:bolder;
-}
-
-.sidenav {
-  width:400px;
-  position:relative;
-  top:-5%;
-  height: 100%;
+.description {
+  overflow: hidden;
+  width:85%;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 .far {
@@ -97,43 +62,34 @@ body {
   }
 }
 
-.signedinButton {
-  border-top:1px solid #F2F2F2;
-  padding:5px;
-  text-align: right;
-
-  input {
-    margin-top:10px;
-    background-color:#F2F2F2;
-    outline:none;
-    border-radius:5px;
-    font-size:12px;
-    text-transform: lowercase;
-    font-variant: small-caps;
-  }
+.user-image {
+  height:100px;
+  padding:0 10px 0 0;
 }
 
-.deleteButton {
-  background-color:transparent;
-  margin-right:5px;
-  margin-top:5px;
-}
-.deleteButtonsep {
-  border-top:1px solid #f2f2f2;
-  padding:5px;
-}
-.sidebarbg {
-  height:160px;
-  background-color:#f6f6f6;
-}
-.useicon {
-  border-radius:100px;
-  width:150px;
-  height:150px;
-  margin:10px auto;
+.nav-links-box {
+  border:1px solid #333;
+  padding:30px;
+  width:80%;
   position:relative;
-  border:2px solid #333;
-  background-color:#f6f6f6;
+  top:26%;
+  left:10%;
+}
+
+.fab {
+  color:#333;
+  position:relative;
+  left:0;
+  font-size:20px;
+}
+
+.fa-twitter-square {
+  top:28%;
+  margin:0 5px 0 0;
+}
+
+.fa-facebook-square {
+  top:28.2%;
 }
 .signups {
   width:30%;
@@ -141,10 +97,4 @@ body {
   background-color:white;
   padding:20px;
   border:1px solid #eee;
-}
-.userPage {
-
-  a, a:hover {
-    color: black;
-  }
 }

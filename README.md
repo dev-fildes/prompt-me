@@ -1,5 +1,3 @@
-[![Codeship Status for dev-fildes/prompt-me](https://app.codeship.com/projects/024fcf60-319b-0138-a622-5a445d5df4a4/status?branch=master)](https://app.codeship.com/projects/385473)
-
 # Prompt Me!
 
 Prompt Me is a blog-like site where writers can post stories they've written or generate a random prompt to help get them started. Users can leave feedback on submissions to help one another improve. Built with React and Rails with Jest/Enzyme and Rspec for testing.
