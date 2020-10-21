@@ -96,8 +96,8 @@ const NewPostForm = (props) => {
       <p>
       {prompt}
       </p>
-      <div class="ui horizontal divider">
-  <h4 class="ui header">
+      <div className="ui horizontal divider">
+  <h4 className="ui header">
       {newPromptButton}
 
   </h4>

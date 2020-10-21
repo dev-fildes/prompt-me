@@ -1,3 +1,7 @@
+.new_user {
+  margin: 0 0 0 -8%;
+}
+
 .formContainer {
   background-color: #FFF;
   padding:10px;
@@ -36,23 +40,7 @@
 .ui.grid>[class*="eleven wide"].column {
   margin-top:20px;
 }
-.links {
-  margin-top:100px;
-}
-.item {
-  transition: .2s;
-  transform: scale(1.0);
-}
-.item:hover {
-  transform: scale(1.05);
-  transition: .2s;
-}
-.logo {
-  height:100px;
-}
-.signInPrompt {
-  text-align:center;
-}
+
 .ui.basic.buttons {
   margin-top:20px;
 }

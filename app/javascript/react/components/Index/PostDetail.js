@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom'
 
 const PostDetail = (props) => {
 
+
   return(
     <Fragment>
 
       <div className="item">
-        <div className="image"><img src={props.post.user.profile_photo.url
-        } /></div>
+     <img src={props.post.user.profile_photo.url} className="user-image"/>
         <div className="content">
           <div className="header">{props.post.title}</div>
           <div className="description">

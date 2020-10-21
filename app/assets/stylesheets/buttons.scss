@@ -1,4 +1,90 @@
+a {
+  text-decoration: none;
+}
 button {
   background: none;
   border:none;
 }
+.signedinButton {
+  border-top:1px solid #F2F2F2;
+  padding:5px;
+  text-align: right;
+
+  input {
+    margin-top:10px;
+    background-color:#F2F2F2;
+    outline:none;
+    border-radius:5px;
+    font-size:12px;
+    text-transform: lowercase;
+    font-variant: small-caps;
+  }
+}
+
+.deleteButton {
+  background-color:transparent;
+  margin-right:5px;
+  margin-top:5px;
+}
+.deleteButtonsep {
+  border-top:1px solid #f2f2f2;
+  padding:5px;
+}
+.ui.compact.button {
+  width:80px;
+}
+
+.navigation-links {
+  display:block;
+  color:#686868;
+  text-decoration: none;
+  padding:15px 0 15px 0;
+  font-family:Roboto;
+  font-weight:bold;
+  text-transform:uppercase;
+}
+
+.navigation-links:hover {
+  text-decoration: none;
+  color:#fccf07;
+  -moz-transition: all .2s ease-in;
+  -o-transition: all .2s ease-in;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+}
+
+.prompt-title {
+  font:28px Ubuntu;
+  color:white;
+  position:relative;
+  top:20%;
+  -moz-transition: all .3s ease-in;
+  -o-transition: all .3s ease-in;
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
+}
+
+.prompt-title:hover {
+  color:#fccf07;
+}
+
+.prompt-title::first-letter {
+ color:#fccf07;
+}
+
+.prompt-title:hover::first-letter {
+ color:#fff;
+   -moz-transition: all .3s ease-in;
+  -o-transition: all .3s ease-in;
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
+}
+
+.navbar-brand {
+  position:relative;
+  top:20%;
+  border-bottom:1px solid #333;
+  width:80%;
+  left:10%;
+}
+
