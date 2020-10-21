@@ -9,10 +9,12 @@
   src="https://code.jquery.com/jquery-3.1.1.min.js"
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
   <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/d414e5ddf1.js" crossorigin="anonymous"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
 
 
   <%= csrf_meta_tags %>
@@ -25,70 +27,100 @@
 
         <%- if current_user -%>
         <a href="/">
-        <div class="prompt-title">Prompt Me!</div></a>
-        <div class="navbar-brand"></div>
-        <div class="nav-links-box">
+          <div class="prompt-title">Prompt Me!</div></a>
+          <div class="navbar-brand"></div>
+          <div class="nav-links-box">
 
 
-          <a href="/" class="navigation-links">
-           Home
-         </a>
-         <a href="/new" class="navigation-links">
-           New Post
-         </a>
-         <a href=/profile/<%= current_user.id %> class="navigation-links">
-          Profile
-        </a>
-        <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, :class => "navigation-links" %>
+            <a href="/" class="navigation-links">
+             Home
+           </a>
+           <a href="/new" class="navigation-links">
+             New Post
+           </a>
+           <a href=/profile/<%= current_user.id %> class="navigation-links">
+            Profile
+          </a>
+          <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, :class => "navigation-links" %>
 
 
-      </div>
-      <i class="fab fa-twitter-square fa-lg"></i>
-      <i class="fab fa-facebook-square"></i>
+        </div>
+        <i class="fab fa-twitter-square fa-lg"></i>
+        <i class="fab fa-facebook-square"></i>
 
-      <%- else -%>
+        <%- else -%>
         <a href="/">
-        <div class="prompt-title">Prompt Me!</div></a>
-        <div class="navbar-brand"></div>
+          <div class="prompt-title">Prompt Me!</div></a>
+          <div class="navbar-brand"></div>
 
-      <div class="nav-links-box">
-        <a href="/" class="navigation-links">
-         Home
-       </a>
-       <a href="/" class="navigation-links">
-         About
-       </a>
-       <%= link_to 'Login', new_user_session_path, :class => "navigation-links" %>
-       <%= link_to 'Sign Up', new_user_registration_path, :class => "navigation-links" %>
-
-     </div>
-     <i class="fab fa-twitter-square fa-lg"></i>
-     <i class="fab fa-facebook-square"></i>
-     <%- end -%>
-   </div>
- </div>
- <div class="eleven wide column">
-
-  <%- flash.each do |key, value| -%>
-  <div class="flash flash-<%= key %>">
-    <%= value %>
-  </div>
-  <%- end -%>
-  <%= yield %>
-
-  <%- if current_user -%>
-
-  <%- end %>
+          <div class="nav-links-box">
+            <a href="/" class="navigation-links">
+             Home
+           </a>
+           <!-- Button trigger modal -->
+           <span class="navigation-links" data-toggle="modal" data-target="#exampleModal">
+            About
+          </span>
 
 
-  <%- if Rails.env.development? || Rails.env.test? -%>
-  <%= javascript_tag do %>
-  window.railsEnv = '<%= Rails.env %>'
-  <%- end -%>
-  <%- end -%>
-  <%= javascript_pack_tag 'application' %>
-  <%= yield :extra_footer %>
-</div>
 
-</body>
-</html>
+          <%= link_to 'Login', new_user_session_path, :class => "navigation-links" %>
+          <%= link_to 'Sign Up', new_user_registration_path, :class => "navigation-links" %>
+
+        </div>
+        <i class="fab fa-twitter-square fa-lg"></i>
+        <i class="fab fa-facebook-square"></i>
+        <%- end -%>
+      </div>
+    </div>
+    <div class="eleven wide column">
+
+      <%- flash.each do |key, value| -%>
+      <div class="flash flash-<%= key %>">
+        <%= value %>
+      </div>
+      <%- end -%>
+      <%= yield %>
+
+      <%- if current_user -%>
+
+      <%- end %>
+
+
+      <%- if Rails.env.development? || Rails.env.test? -%>
+      <%= javascript_tag do %>
+      window.railsEnv = '<%= Rails.env %>'
+      <%- end -%>
+      <%- end -%>
+      <%= javascript_pack_tag 'application' %>
+      <%= yield :extra_footer %>
+
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">About Prompt Me!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Prompt Me! Is a writing blog resource for those looking to improve their writing. Each day you'll receive a new set of prompts which we encourage you to use to get you started. The goal is not to find that perfect prompt but to get you writing. 
+
+            Registered users can leave feedback or reviews on works uploaded by others. We hope to make this a comfortable, cozy site. Where everyone who wants to write whether new or old can feel at home.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  </body>
+  </html>
